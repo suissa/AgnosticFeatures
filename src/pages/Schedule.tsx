@@ -68,6 +68,20 @@ const appointments: AppointmentEvent[] = [
     },
   },
 ];
+const formats = {
+  monthHeaderFormat: 'MMMM yyyy',
+  dayHeaderFormat: 'cccc',
+  dayRangeHeaderFormat: ({ start, end }: { start: Date; end: Date }) =>
+    `${format(start, 'dd/MM', { locale: ptBR })} - ${format(end, 'dd/MM', { locale: ptBR })}`,
+  eventTimeRangeFormat: ({ start, end }: { start: Date; end: Date }) =>
+    `${format(start, 'HH:mm', { locale: ptBR })} - ${format(end, 'HH:mm', { locale: ptBR })}`,
+  timeGutterFormat: (date: Date) => format(date, 'HH:mm', { locale: ptBR }),
+  agendaDateFormat: (date: Date) => format(date, 'dd/MM/yyyy', { locale: ptBR }),
+  agendaTimeFormat: (date: Date) => format(date, 'HH:mm', { locale: ptBR }),
+  agendaTimeRangeFormat: ({ start, end }: { start: Date; end: Date }) =>
+    `${format(start, 'HH:mm', { locale: ptBR })} - ${format(end, 'HH:mm', { locale: ptBR })}`,
+  weekdayFormat: (date: Date) => format(date, 'cccc', { locale: ptBR }).charAt(0).toUpperCase() + format(date, 'cccc', { locale: ptBR }).slice(1),
+};
 
 const Schedule = () => {
   const [selectedAppointment, setSelectedAppointment] =
@@ -85,15 +99,14 @@ const Schedule = () => {
       <Calendar
         localizer={localizer}
         events={appointments}
+        formats={formats}
+        culture='pt-BR'
         startAccessor="start"
         endAccessor="end"
         style={{ 
-          height: 'calc(100vh - 2rem)',
-          maxWidth: '100%'
+          height: '100vh',
+          width: '100%'
         }}
-        onSelectEvent={handleSelectEvent}
-        defaultView="week"
-        views={["month", "week", "day"]}
         messages={{
           next: "Próximo",
           previous: "Anterior",
@@ -101,7 +114,18 @@ const Schedule = () => {
           month: "Mês",
           week: "Semana",
           day: "Dia",
+          showMore: (total: unknown) => `+${total} mais`,
+          date: "Data",
+          time: "Hora",
+          event: "Evento",
+          allDay: "Dia inteiro",
+          work_week: "Semana de trabalho",
+          yesterday: "Ontem",
+          tomorrow: "Amanhã",
+          agenda: "Agenda",
         }}
+        defaultView="week"
+        views={["month", "week", "day"]}
       />
 
       <Drawer
