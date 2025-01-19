@@ -1,13 +1,13 @@
 // src/pages/Schedule.tsx
 import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import format from "date-fns/format";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
-import getDay from "date-fns/getDay";
-import ptBR from "date-fns/locale/pt-BR";
+import { format } from "date-fns/format";
+import { parse } from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWformateek";
+import { getDay } from "date-fns/getDay";
+import { ptBR } from "date-fns/locale/pt-BR";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { Drawer } from "../shared/components/drawer";
+import { Drawer } from "../shared/components/Drawer";
 import { Button } from "../shared/components/atoms/Button";
 
 // Configuração do localizador para PT-BR
