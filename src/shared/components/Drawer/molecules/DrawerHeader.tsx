@@ -1,5 +1,5 @@
 import React from 'react';
-import { CloseButton } from '../../ui/buttons/CloseButton'
+import { CloseButton } from '../../../atoms/CloseButton'
 
 interface DrawerHeaderProps {
   title?: string;
