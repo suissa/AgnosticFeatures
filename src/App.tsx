@@ -4,6 +4,7 @@ import Products from './pages/Products';
 import Schedule from './features/schedule/pages/SchedulePage';
 import ButtonExample from './shared/atoms/Button/example';
 import ModalExample from './shared/components/Modal/pages/example';
+import PatientListExample from './features/patientList/pages/example';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/button/example" element={<ButtonExample />} />
         <Route path="/modal/example" element={<ModalExample />} />
+        <Route path="/patients/example" element={<PatientListExample />} />
       </Routes>
     </BrowserRouter>
   );

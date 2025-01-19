@@ -49,7 +49,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({
       month: "Mês",
       week: "Semana",
       day: "Dia",
-      showMore: (total) => `+${total} mais`,
+      showMore: (total: unknown) => `+${total} mais`,
       date: "Data",
       time: "Hora",
       event: "Evento",
