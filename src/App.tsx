@@ -1,9 +1,9 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Products from './pages/Products';
-import Schedule from './features/Schedule/pages/SchedulePage';
-import ButtonDemo from './shared/atoms/Button/examples';
-import ModalExample from './shared/components/Modal/pages/ModalExample';
+import Schedule from './features/schedule/pages/SchedulePage';
+import ButtonExample from './shared/atoms/Button/example';
+import ModalExample from './shared/components/Modal/pages/example';
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
         <Route path="/" element={<div>Home</div>} />
         <Route path="/products" element={<Products />} />
         <Route path="/schedule" element={<Schedule />} />
-        <Route path="/button/example" element={<ButtonDemo />} />
+        <Route path="/button/example" element={<ButtonExample />} />
         <Route path="/modal/example" element={<ModalExample />} />
       </Routes>
     </BrowserRouter>

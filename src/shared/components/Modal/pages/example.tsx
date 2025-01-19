@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Modal } from "..";
-import { Button } from "../../../../shared/atoms/Button";
+import { Button } from "../../../atoms/Button";
 
 const ModalExample = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
