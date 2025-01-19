@@ -1,6 +1,4 @@
-// src/pages/ButtonDemo.tsx
-import React from 'react';
-import { Button } from '../shared/components/atoms/Button';
+import { Button } from './index';
 
 const ButtonDemo = () => {
   return (

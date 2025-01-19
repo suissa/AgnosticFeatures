@@ -3,7 +3,7 @@ interface CloseButtonProps {
   className?: string;
 }
 
-import { CloseIcon } from "../../../icons/CloseIcon";
+import { CloseIcon } from ;
 
 export const CloseButton = ({ onClick, className = "" }: CloseButtonProps) => (
   <button
