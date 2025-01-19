@@ -20,7 +20,20 @@ interface CalendarViewProps {
 }
 // eslint-disable-next-line
 const Calendar = BigCalendar as any;
-
+const formats = {
+  monthHeaderFormat: 'MMMM yyyy',
+  dayHeaderFormat: 'cccc',
+  dayRangeHeaderFormat: ({ start, end }: { start: Date; end: Date }) =>
+    `${format(start, 'dd/MM', { locale: ptBR })} - ${format(end, 'dd/MM', { locale: ptBR })}`,
+  eventTimeRangeFormat: ({ start, end }: { start: Date; end: Date }) =>
+    `${format(start, 'HH:mm', { locale: ptBR })} - ${format(end, 'HH:mm', { locale: ptBR })}`,
+  timeGutterFormat: (date: Date) => format(date, 'HH:mm', { locale: ptBR }),
+  agendaDateFormat: (date: Date) => format(date, 'dd/MM/yyyy', { locale: ptBR }),
+  agendaTimeFormat: (date: Date) => format(date, 'HH:mm', { locale: ptBR }),
+  agendaTimeRangeFormat: ({ start, end }: { start: Date; end: Date }) =>
+    `${format(start, 'HH:mm', { locale: ptBR })} - ${format(end, 'HH:mm', { locale: ptBR })}`,
+  weekdayFormat: (date: Date) => format(date, 'cccc', { locale: ptBR }).charAt(0).toUpperCase() + format(date, 'cccc', { locale: ptBR }).slice(1),
+};
 const CalendarView: React.FC<CalendarViewProps> = ({
   events,
   onSelectEvent,
@@ -28,10 +41,29 @@ const CalendarView: React.FC<CalendarViewProps> = ({
   <Calendar
     localizer={localizer}
     events={events}
+    formats={formats}
+    messages={{
+      next: "Próximo",
+      previous: "Anterior",
+      today: "Hoje",
+      month: "Mês",
+      week: "Semana",
+      day: "Dia",
+      showMore: (total) => `+${total} mais`,
+      date: "Data",
+      time: "Hora",
+      event: "Evento",
+      allDay: "Dia inteiro",
+      work_week: "Semana de trabalho",
+      yesterday: "Ontem",
+      tomorrow: "Amanhã",
+      agenda: "Agenda",
+    }}
+    views={["month", "week", "day"]}
+    culture='pt-BR'
     startAccessor="start"
     endAccessor="end"
     defaultView="week"
-    views={["month", "week", "day"]}
     style={{ height: "100vh" }}
     onSelectEvent={onSelectEvent}
   />
