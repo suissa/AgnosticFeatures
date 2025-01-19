@@ -7,9 +7,11 @@ export const PatientAccordionList: React.FC = () => {
 
   return (
     <div>
-      {patients.map((patient) => (
-        <PatientAccordion key={patient.id} patient={patient} />
-      ))}
+      {patients.map((patient) => {
+        return (
+          <PatientAccordion className="w-1/4" key={patient.id} patient={patient}/>
+        )
+      })}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import Schedule from './features/schedule/pages/SchedulePage';
 import ButtonExample from './shared/atoms/Button/example';
 import ModalExample from './shared/components/Modal/pages/example';
 import PatientListExample from './features/patientList/pages/example';
-
+import FAQExample from './features/faq/pages/example';
 const App = () => {
   return (
     <BrowserRouter>
@@ -16,6 +16,7 @@ const App = () => {
         <Route path="/button/example" element={<ButtonExample />} />
         <Route path="/modal/example" element={<ModalExample />} />
         <Route path="/patients/example" element={<PatientListExample />} />
+        <Route path="/faq/example" element={<FAQExample />} />
       </Routes>
     </BrowserRouter>
   );

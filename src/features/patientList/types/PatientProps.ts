@@ -4,4 +4,5 @@ export interface PatientProps {
   age: number;
   condition: string;
   notes: string;
+  history: string;
 }
