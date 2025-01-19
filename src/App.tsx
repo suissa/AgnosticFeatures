@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Products from './pages/Products';
-import Schedule from './pages/Schedule';
+import Schedule from './features/Schedule/pages/SchedulePage';
 import ButtonDemo from './shared/atoms/Button/examples';
 
 const App = () => {

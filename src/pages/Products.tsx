@@ -1,5 +1,4 @@
-// src/pages/Products.tsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Drawer } from '../shared/components/Drawer';
 
 interface Product {
