@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import React, { useState, forwardRef } from 'react';
+// import { Calendar as BigCalendar, CalendarProps, dateFnsLocalizer } from 'react-big-calendar';
+import { Calendar as BigCalendar} from "react-big-calendar";
+import { dateFnsLocalizer } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay } from 'date-fns';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Drawer } from '../shared/components/Drawer';
 import { Button } from '../shared/atoms/Button';
 
-// Configuração do localizador para PT-BR
+
+// @ts-ignore
+const Calendar = BigCalendar as unknown;
+
 const locales = {
   "pt-BR": ptBR,
 };
@@ -19,8 +24,7 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-// Interface para os eventos/consultas
-interface Appointment {
+interface AppointmentEvent {
   id: number;
   title: string;
   start: Date;
@@ -34,13 +38,12 @@ interface Appointment {
   };
 }
 
-// Dados de exemplo
-const appointments: Appointment[] = [
+const appointments: AppointmentEvent[] = [
   {
     id: 1,
     title: "Consulta - João Silva",
-    start: new Date(2024, 0, 19, 9, 0),
-    end: new Date(2024, 0, 19, 10, 0),
+    start: new Date(), // hoje
+    end: new Date(new Date().setHours(new Date().getHours() + 1)), // 1 hora depois
     patient: {
       name: "João Silva",
       age: 45,
@@ -53,8 +56,8 @@ const appointments: Appointment[] = [
   {
     id: 2,
     title: "Consulta - Maria Santos",
-    start: new Date(2024, 0, 19, 14, 0),
-    end: new Date(2024, 0, 19, 15, 0),
+    start: new Date(new Date().setHours(14)), // hoje às 14h
+    end: new Date(new Date().setHours(15)), // hoje às 15h
     patient: {
       name: "Maria Santos",
       age: 32,
@@ -64,27 +67,30 @@ const appointments: Appointment[] = [
       nextSteps: "Iniciar terapia semanal. Avaliação psiquiátrica recomendada.",
     },
   },
-  // Adicione mais consultas conforme necessário
 ];
 
 const Schedule = () => {
   const [selectedAppointment, setSelectedAppointment] =
-    useState<Appointment | null>(null);
+    useState<AppointmentEvent | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const handleSelectEvent = (event: Appointment) => {
+  const handleSelectEvent = (event: AppointmentEvent) => {
     setSelectedAppointment(event);
     setIsDrawerOpen(true);
   };
 
   return (
-    <div className="h-screen w-full p-4 bg-gray-50">
+    <div className="h-screen w-full bg-gray-50 overflow-hidden">
+      <div className="h-full">
       <Calendar
         localizer={localizer}
         events={appointments}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: "calc(100vh - 2rem)" }}
+        style={{ 
+          height: 'calc(100vh - 2rem)',
+          maxWidth: '100%'
+        }}
         onSelectEvent={handleSelectEvent}
         defaultView="week"
         views={["month", "week", "day"]}
@@ -155,6 +161,7 @@ const Schedule = () => {
           </div>
         )}
       </Drawer>
+    </div>
     </div>
   );
 };
