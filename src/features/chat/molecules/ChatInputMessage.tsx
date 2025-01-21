@@ -5,6 +5,7 @@ export interface IMessage {
   owner: string;
   text: string;
   datetime: string;
+  type: string; // sender | receiver
 }
 interface ChatInputMessageProps {
   onSubmit?: () => void;
@@ -13,13 +14,15 @@ interface ChatInputMessageProps {
 
 const getDatetime = () => {
   const date = new Date();
-  const time = `${date.getHours()}:${date.getMinutes()}`;
-  return time;
+  const datetime = `${date.getDay()}/${date.getMonth()+1}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`;
+  return datetime;
 };
 
 const getOwner = () => {
   return "suissa";
 };
+
+console.log(getDatetime());
 
 export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
   const [message, setMessage] = useState<IMessage>();
@@ -40,6 +43,7 @@ export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
               owner: getOwner(),
               text: e.target.value,
               datetime: getDatetime(),
+              type: "sender",
             })
           }
         ></Input>

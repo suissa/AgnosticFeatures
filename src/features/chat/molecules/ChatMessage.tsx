@@ -8,9 +8,11 @@ interface ChatMessageProps {
   messageClass?: string;
 }
 export const ChatMessage = ({ text, owner, datetime, textClass, ownerClass, datetimeClass, messageClass }: ChatMessageProps) => (
-  <p className={messageClass}>
-    <span className={textClass}>{text}</span>
-    <span className={ownerClass}>{owner}</span>
-    <span className={datetimeClass}>{datetime}</span>
-  </p>
+  <>
+    <p className={datetimeClass}>{datetime}</p>
+    <p className={messageClass}>
+      <span className={textClass}>{text}</span>
+      <span className={ownerClass}>{owner}</span>
+    </p>
+  </>
 )
