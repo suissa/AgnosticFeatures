@@ -19,37 +19,42 @@ const getDatetime = () => {
   }/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`;
   return datetime;
 };
-
-const getOwner = () => {
-  return "suissa";
-};
-
 const chatInputClasses = "mt-1 block w-full px-4 py-2 border border-gray-500 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
 
 export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
-  const [message, setMessage] = useState<IMessage>();
+  const [message, setMessage] = useState<IMessage>({
+    owner: "suissa",
+    text: "",
+    datetime: getDatetime(),
+    type: "sender",
+  });
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+
+    if (e.key === "Enter") {
+      setMessages((prev) => [...prev, message]);
+      setMessage((prev) => ({
+        ...prev,
+        text: "",
+      }));
+}
+  };
   return (
     <div>
       <Input
         type="text"
-        value=""
+        value={message?.text}
+        placeholder="Escreva sua mensagem..."
         className={chatInputClasses}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setMessage({
-            owner: getOwner(),
+            ...message,
             text: e.target.value,
-            datetime: getDatetime(),
-            type: "sender",
           })
         }
-        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-          e.stopPropagation();
-          if (e.key === "Enter") {
-            if (message) {
-              setMessages((prev) => [...prev, message]);
-            }
-          }
-        }}
+        onKeyDown={handleKeyDown}
+        
       ></Input>
     </div>
   );

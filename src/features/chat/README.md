@@ -198,3 +198,48 @@ Então lendo a última linha `Type 'undefined' is not assignable to type 'IMessa
 fica bem mais fácil de entender o real problema.
 
 **#ficadica**
+
+Também há outro cenário onde você define os campos de um objeto como obrigatórios, mas 
+quer atualziar apenas um campo, por exemplo:
+
+```tsx
+export interface IMessage {
+  owner: string;
+  text: string;
+  datetime: string;
+  type: string; // sender | receiver
+  className?: string;
+}
+
+const [message, setMessage] = useState<IMessage>();
+
+setMessage((prev) => ({
+  ...prev,
+  text: "",
+}))
+```
+
+Você vai se deparar com esse erro:
+
+```
+Argument of type '(prev: IMessage | undefined) => { text: string; owner?: string | undefined; datetime?: string | undefined; type?: string | undefined; className?: string | undefined; }' is not assignable to parameter of type 'SetStateAction<IMessage | undefined>'.
+  Type '(prev: IMessage | undefined) => { text: string; owner?: string | undefined; datetime?: string | undefined; type?: string | undefined; className?: string | undefined; }' is not assignable to type '(prevState: IMessage | undefined) => IMessage | undefined'.
+    Call signature return types '{ text: string; owner?: string | undefined; datetime?: string | undefined; type?: string | undefined; className?: string | undefined; }' and 'IMessage | undefined' are incompatible.
+      The types of 'owner' are incompatible between these types.
+        Type 'string | undefined' is not assignable to type 'string'.
+          Type 'undefined' is not assignable to type 'string'.ts(2345)
+```
+
+Isso acontece porque você precisa garantir que os valores não são undefined,
+basicamente sempre quue você ver esse erro de undefined é porque você precisa ou testar ele
+antes ou definir seu valor, nesse caso eu defini um valor padão:
+
+```tsx
+setMessage((prev) => ({
+  ...prev,
+  text: "",
+  owner: prev?.owner || "suissa",
+  datetime: prev?.datetime || getDatetime(),
+  type: prev?.type || "sender",
+}))
+```

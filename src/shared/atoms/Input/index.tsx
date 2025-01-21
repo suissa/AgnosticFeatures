@@ -2,7 +2,8 @@ interface InputProps {
   className?: string;
   id?: string;
   type: string;
-  value?: string;
+  value: string;
+  placeholder?: string;
   onClick?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -12,12 +13,14 @@ interface InputProps {
 
 
 export const Input = ({ 
-  className, id, type, 
+  className, id, type, placeholder, value,
   onClick, onChange, onFocus, onBlur, onKeyDown}: InputProps) => (
   <input 
     className={className}
     id={id}
     type={type}
+    value={value}
+    placeholder={placeholder}
     onClick={onClick}
     onChange={onChange}
     onFocus={onFocus}
