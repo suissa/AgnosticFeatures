@@ -270,3 +270,71 @@ Eu falei anteriormente que o `mx-auto` não funciona **sozinho** para centraliza
 - `left-0`
 - `right-0`
 
+
+
+## Mensagens
+
+### Comportamento/Rolagem
+
+Qual foi meu maior desafio nessa parte?
+
+Foi conseguir inverter a ordem da sequencia das mensagens, elas não podiam vir de cima
+e nem aparecer lá em cima por primeiro, então precisava que a mensagem mais atual aparecesse
+embaixo da página. E também fazer que a rolagem não seguisse para cima quando as mensagens
+estivessem cresceendo para o topo.
+
+Para conseguir esse comportamento eu fiz o seguinte:
+
+#### Estrutura do Container Principal:
+
+```jsx
+<div className="w-full bg-white fixed top-0">
+```
+
+- fixed top-0: Fixa o chat no topo da tela
+
+
+#### Container das Mensagens:
+
+```jsx
+<div 
+  className="flex flex-col-reverse h-[calc(100vh-60px)] overflow-y-auto"
+  ref={messagesContainerRef}>
+```
+
+- flex flex-col-reverse: Inverte a ordem das mensagens
+- h-[calc(100vh-60px)]: Altura calculada considerando o espaço do input
+- overflow-y-auto: Permite scroll vertical
+- ref={messagesContainerRef}: Referência para controlar o scroll
+
+#### Sistema de Scroll Automático:
+
+```ts
+useEffect(() => {
+  if (messagesContainerRef.current) {
+    const container = messagesContainerRef.current;
+    container.scrollTop = container.scrollHeight;
+  }
+}, [messages]);
+```
+
+- Monitora mudanças no array de mensagens
+- Força o scroll para o final quando novas mensagens chegam
+
+#### Input Fixo:
+
+```jsx
+<div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[calc(100%-40px)]">
+```
+
+- fixed bottom-3: Mantém o input sempre na parte inferior
+- -translate-x-1/2: Centraliza o input
+- w-[calc(100%-40px)]: Largura calculada com margem
+
+#### O que faz esse código funcionar bem:
+
+- Uso correto do flex-col-reverse
+- Referências bem posicionadas
+- Scroll automático implementado corretamente
+- Cálculos precisos de altura/largura
+- Posicionamento fixo adequado
