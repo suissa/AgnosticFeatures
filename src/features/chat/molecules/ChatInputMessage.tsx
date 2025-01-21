@@ -41,7 +41,7 @@ export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
 }
   };
   return (
-    <div>
+    <div className="w-full">
       <Input
         type="text"
         value={message?.text}

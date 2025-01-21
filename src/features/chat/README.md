@@ -150,7 +150,9 @@ const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
 };
 ``` 
 
-## Verificação de valor antes de definir um state
+## Estado
+
+### Verificação de valor antes de definir um state
 
 Uma coisa  que é importante salientar é que quando você define uma `interface` para seu state
 é necessário que você faça uma checkagem se o valor que será definido não seja undefined ou null, por exemplo:
@@ -243,3 +245,28 @@ setMessage((prev) => ({
   type: prev?.type || "sender",
 }))
 ```
+
+## Estilização
+
+### Centralização de elemento fixed ou absolute
+
+Bom como sabemos quando um elemento é absolute ou fixed ele sai do fluxo normal da página
+logo propriedades bem comuns de centralização como `mx-auto` **sozinho** não funcionam. Sabendo disso nós podemos usar a técnica do `left` com o `translate` que é assim:
+
+```html
+<div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[90%]">
+```
+
+Com isso você faz o seguinte:
+
+- o `left` joga o começo do elemento lá para a metade da tela
+  - fazendo com que ele ultrapasse a outra borda
+- o `-translate` você move o elemento para a metade do seu próprio tamanho
+  - fazendo com que ele fique alinhado
+
+Eu falei anteriormente que o `mx-auto` não funciona **sozinho** para centralizar um elemento
+`fixed`, correto? Então, para ele funionar corretamente nós precisamos usar também:
+
+- `left-0`
+- `right-0`
+
