@@ -81,9 +81,14 @@ const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 Exemplo:
 
 ```tsx
-const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
   if (e.key === 'Enter') {
     console.log('Enter pressed');
+  }
+};
+const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  if (e.key === 'Enter') {
+    console.log('Enter released');
   }
 };
 ```

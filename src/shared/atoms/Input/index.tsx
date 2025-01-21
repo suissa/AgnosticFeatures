@@ -7,16 +7,21 @@ interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onKeypress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 
-export const Input = ({ className, id, type, onClick, onChange}: InputProps) => (
+export const Input = ({ 
+  className, id, type, 
+  onClick, onChange, onFocus, onBlur, onKeyDown}: InputProps) => (
   <input 
     className={className}
     id={id}
     type={type}
     onClick={onClick}
     onChange={onChange}
+    onFocus={onFocus}
+    onBlur={onBlur}
+    onKeyDown={onKeyDown}
   />
 )

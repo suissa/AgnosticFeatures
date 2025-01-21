@@ -4,9 +4,9 @@ import { ChatMessage } from "../molecules/ChatMessage";
 import { IMessage } from "../molecules/ChatInputMessage";
 
 const roundAndPad = "px-6  py-2 rounded rounded-xl"
-const senderClass = `flex flex-row-reverse bg-blue-500 text-white w-[40%] 
+const senderClass = `flex flex-row-reverse bg-blue-500 text-white  
 justify-self-end mr-6 mb-6 ${roundAndPad}`;
-const receiverClass = `flex flex-row bg-gray-200 text-gray-800 w-[40%] 
+const receiverClass = `flex flex-row bg-gray-200 text-gray-800  
 justify-self-start ml-6 mb-6 mr-6 mb-6 ${roundAndPad}`;
 console.log(senderClass)
 export const Chat = (): ReactNode => {
