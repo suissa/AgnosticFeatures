@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "../../../shared/atoms/Button";
 import { Input } from "../../../shared/atoms/Input";
-export interface Message {
+export interface IMessage {
   owner: string;
   text: string;
   datetime: string;
@@ -11,8 +11,18 @@ interface ChatInputMessageProps {
   setMessages: Dispatch<SetStateAction<Message[]>>;
 }
 
+const getDatetime = () => {
+  const date = new Date()
+  const time = `${date.getHours()}:${date.getMinutes()}`;
+  return time;
+}
+
+const getOwner = () => {
+  return "suissa";
+}
+
 export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
-  const [message, setMessage] = useState<Message>()
+  const [message, setMessage] = useState<IMessage>()
   const onSubmit = (e) => {
     e.preventDefault();
     setMessages((prev) => [...prev, message])
@@ -23,7 +33,7 @@ export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
         <Input 
           type="text"  
           value="" 
-          onChange={(e) => setMessage({owner: "eu", text: e.target.value, datetime: "33333"})}></Input>
+          onChange={(e) => setMessage({owner: getOwner(), text: e.target.value, datetime: getDatetime()})}></Input>
       </div>
       <Button type="submit">Enviar</Button> 
     </form>

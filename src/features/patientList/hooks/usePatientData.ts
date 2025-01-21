@@ -9,6 +9,7 @@ const usePatientData = () => {
       age: 32,
       condition: "Hipertensão",
       notes: "Monitoramento semanal necessário.",
+      history: "Histórico do paciente"
     },
     {
       id: 2,
@@ -16,6 +17,7 @@ const usePatientData = () => {
       age: 45,
       condition: "Diabetes Tipo 2",
       notes: "Acompanhamento com nutricionista.",
+      history: "Histórico do paciente"
     },
     {
       id: 3,
@@ -23,6 +25,7 @@ const usePatientData = () => {
       age: 28,
       condition: "Ansiedade",
       notes: "Sessões de terapia semanal.",
+      history: "Histórico do paciente"
     },
     {
       id: 4,
@@ -30,6 +33,7 @@ const usePatientData = () => {
       age: 50,
       condition: "Colesterol Alto",
       notes: "Exercícios físicos recomendados.",
+      history: "Histórico do paciente"
     },
   ]);
 
