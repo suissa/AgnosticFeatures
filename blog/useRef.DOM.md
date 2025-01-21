@@ -198,3 +198,40 @@ Precisar acessar elementos DOM diretamente
 Precisar guardar valores que não devem causar re-renderização
 Precisar manter referências para timeouts/intervals
 Precisar implementar funcionalidades que requerem acesso imperativo
+
+Padrões Comuns de Uso:
+
+Ref + Effect:
+
+```jsx
+const ref = useRef(null);
+useEffect(() => {
+  // Usar ref.current aqui
+}, []);
+```
+
+Ref + Cleanup:
+
+```jsx
+useEffect(() => {
+  return () => {
+    // Limpar ref.current aqui
+  };
+}, []);
+```
+
+Ref + Event Handler:
+
+```jsx
+const handleClick = () => {
+  // Usar ref.current em resposta a eventos
+};
+```
+
+
+Quando NÃO Usar:
+
+Para estados que devem causar re-renderização (use useState)
+Para props que mudam frequentemente
+Como substituto de estado global
+Para dados que precisam ser reativos

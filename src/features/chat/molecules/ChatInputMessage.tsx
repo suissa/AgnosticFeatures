@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Input } from "../../../shared/atoms/Input";
+
 export interface IMessage {
   owner: string;
   text: string;
@@ -7,8 +8,8 @@ export interface IMessage {
   type: string; // sender | receiver
   className?: string;
 }
+
 interface ChatInputMessageProps {
-  onSubmit?: () => void;
   setMessages: Dispatch<SetStateAction<IMessage[]>>;
 }
 
@@ -19,7 +20,8 @@ const getDatetime = () => {
   }/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`;
   return datetime;
 };
-const chatInputClasses = "mt-1 block w-full px-4 py-2 border border-gray-500 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+
+const chatInputClasses = "mt-1 block w-full px-4 py-2 border border-gray-500 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500";
 
 export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
   const [message, setMessage] = useState<IMessage>({
@@ -32,14 +34,15 @@ export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.stopPropagation();
 
-    if (e.key === "Enter") {
-      setMessages((prev) => [...prev, message]);
-      setMessage((prev) => ({
+    if (e.key === "Enter" && message.text.trim()) {
+      setMessages(prev => [...prev, { ...message, datetime: getDatetime() }]);
+      setMessage(prev => ({
         ...prev,
         text: "",
       }));
-}
+    }
   };
+
   return (
     <div className="w-full">
       <Input
@@ -48,14 +51,13 @@ export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
         placeholder="Escreva sua mensagem..."
         className={chatInputClasses}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setMessage({
-            ...message,
+          setMessage(prev => ({
+            ...prev,
             text: e.target.value,
-          })
+          }))
         }
         onKeyDown={handleKeyDown}
-        
-      ></Input>
+      />
     </div>
   );
 };
