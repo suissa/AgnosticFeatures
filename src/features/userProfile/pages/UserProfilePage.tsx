@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UserProfileTemplate from "../templates/UserProfileTemplate";
+import UserProfileTemplate from "../template/UserProfileTemplate";
 
 const UserProfilePage = () => {
   const [user, setUser] = useState({

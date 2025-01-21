@@ -1,4 +1,4 @@
-import { ChatInputMessage } from "./ChatIInputMessage";
+import { ChatInputMessage } from "./ChatInputMessage";
 
 export const ChatInputMessageTest = () => {
   const onSubmit = () => {

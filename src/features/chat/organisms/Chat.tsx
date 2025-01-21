@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react"
-import { ChatInputMessage } from "../molecules/ChatIInputMessage"
+import { ChatInputMessage } from "../molecules/ChatInputMessage"
 import { ChatMessage } from "../molecules/ChatMessage";
-import { IMessage } from "../molecules/ChatIInputMessage";
+import { IMessage } from "../molecules/ChatInputMessage";
 export const Chat = (): ReactNode => {
   const [ messages, setMessages ] = useState<IMessage[]>([]);
 

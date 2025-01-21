@@ -1,43 +1,25 @@
-import React from "react";
-import InputField from "../molecules/InputField";
+import React from 'react';
+import Label from '../atoms/Label';
 
-interface UserProfileFormProps {
-  name: string;
-  email: string;
-  onNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: () => void;
+interface InputFieldProps {
+  id: string;
+  label: string;
+  type?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const UserProfileForm: React.FC<UserProfileFormProps> = ({
-  name,
-  email,
-  onNameChange,
-  onEmailChange,
-  onSubmit,
-}) => (
-  <form
-    onSubmit={(e) => {
-      e.preventDefault();
-      onSubmit();
-    }}
-    className="space-y-4"
-  >
-    <InputField id="name" label="Name" value={name} onChange={onNameChange} />
-    <InputField
-      id="email"
-      label="Email"
-      type="email"
-      value={email}
-      onChange={onEmailChange}
+const InputField: React.FC<InputFieldProps> = ({ id, label, type = 'text', value, onChange }) => (
+  <div>
+    <Label htmlFor={id}>{label}</Label>
+    <input
+      id={id}
+      type={type}
+      value={value}
+      onChange={onChange}
+      className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
     />
-    <button
-      type="submit"
-      className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-    >
-      Save
-    </button>
-  </form>
+  </div>
 );
 
-export default UserProfileForm;
+export default InputField;

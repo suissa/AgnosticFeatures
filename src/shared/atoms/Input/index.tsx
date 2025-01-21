@@ -4,7 +4,10 @@ interface InputProps {
   type: string;
   value?: string;
   onClick?: () => void;
-  onChange?: (e: unknown) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onKeypress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 

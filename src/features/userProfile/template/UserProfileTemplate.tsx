@@ -1,53 +1,36 @@
 import React from 'react';
-import InputField from '../molecules/InputField';
-import { Button } from '../../../shared/atoms/Button';
+import UserInfo from '../molecules/UserInfo';
+import UserProfileForm from '../organisms/UserProfileForm';
 
-interface UserProfileFormProps {
-  name: string;
-  email: string;
+interface UserProfileTemplateProps {
+  user: {
+    name: string;
+    email: string;
+    avatar: string;
+  };
   onNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: () => void;
 }
 
-const UserProfileForm: React.FC<UserProfileFormProps> = ({
-  name,
-  email,
+const UserProfileTemplate: React.FC<UserProfileTemplateProps> = ({
+  user,
   onNameChange,
   onEmailChange,
   onSubmit,
-}) => {
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSubmit();
-      }}
-      className="space-y-6 bg-white p-6 shadow-md rounded-md"
-    >
-      {/* Campo Nome */}
-      <InputField
-        id="name"
-        label="Name"
-        value={name}
-        onChange={onNameChange}
+}) => (
+  <div className="max-w-4xl mx-auto p-8">
+    <UserInfo name={user.name} email={user.email} avatar={user.avatar} />
+    <div className="mt-8">
+      <UserProfileForm
+        name={user.name}
+        email={user.email}
+        onNameChange={onNameChange}
+        onEmailChange={onEmailChange}
+        onSubmit={onSubmit}
       />
+    </div>
+  </div>
+);
 
-      {/* Campo Email */}
-      <InputField
-        id="email"
-        label="Email"
-        type="email"
-        value={email}
-        onChange={onEmailChange}
-      />
-
-      {/* Botão de Submissão */}
-      <Button variant="primary" fullWidth type="submit">
-        Save
-      </Button>
-    </form>
-  );
-};
-
-export default UserProfileForm;
+export default UserProfileTemplate;
