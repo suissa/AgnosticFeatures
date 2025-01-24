@@ -2,16 +2,7 @@ import { ReactNode, useEffect, useRef } from "react";
 import useChatContext from "../hooks/useChatContext";
 import { ChatInputMessage } from "../molecules/ChatInputMessage";
 import { ChatMessage } from "../molecules/ChatMessage";
-import { IMessage } from "../quarks/interfaces/IMessage";
 import { FacebookTheme } from "../quarks/themes/FacebookTheme";
-
-const getDatetime = () => {
-  const date = new Date();
-  const datetime = `${date.getDay()}/${
-    date.getMonth() + 1
-  }/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`;
-  return datetime;
-};
 
 export const ChatMessages = (): ReactNode => {
   // const [messages, setMessages] = useState<IMessage[]>([]);

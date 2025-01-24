@@ -3,6 +3,8 @@ import { Input } from "../../../shared/atoms/Input";
 import { IMessage } from "../quarks/interfaces/IMessage";
 import useWebSocket from "../hooks/useWebsocket";
 import { FacebookTheme } from "../quarks/themes/FacebookTheme";
+import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
+
 interface ChatInputMessageProps {
   setMessages: Dispatch<SetStateAction<IMessage[]>>;
 }
@@ -18,6 +20,7 @@ const getDatetime = () => {
 };
 
 export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
+  const [showPicker, setShowPicker] = useState(false);
   const [message, setMessage] = useState<IMessage>({
     owner: "suissa",
     text: "",
@@ -46,21 +49,40 @@ export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
     }
   };
 
+  const handleEmojiClick = (emojiData: EmojiClickData) => {
+    setMessage((prev) => ({ ...prev, text: prev.text + emojiData.emoji})); // Adiciona o emoji ao texto
+    setShowPicker(false); // Fecha o picker após selecionar
+  };
+
   return (
-    <div className="w-full">
-      <Input
-        type="text"
-        value={message?.text}
-        placeholder="Escreva sua mensagem..."
-        className={chatInputClasses}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setMessage(prev => ({
-            ...prev,
-            text: e.target.value,
-          }))
-        }
-        onKeyDown={handleKeyDown}
-      />
-    </div>
+    <>
+      <div className="w-full relative">
+        <Input
+          type="text"
+          value={message?.text}
+          placeholder="Escreva sua mensagem..."
+          className={chatInputClasses}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setMessage(prev => ({
+              ...prev,
+              text: e.target.value,
+            }))
+          }
+          onKeyDown={handleKeyDown}
+        />
+        <button
+          type="button"
+          onClick={() => setShowPicker((prev) => !prev)}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2"
+        >
+          😊
+        </button>
+      </div>
+      {showPicker && (
+        <div className="absolute bottom-12 right-0">
+          <EmojiPicker onEmojiClick={handleEmojiClick} />
+        </div>
+      )}
+    </>
   );
 };
