@@ -4,7 +4,7 @@ export interface ITheme {
   receiverClass: string;
   datetimeClass: string;
   chatInputClasses: string;
-  emojiStyle: EmojiStyle;
+  emojiStyle?: EmojiStyle;
   contacts: {
     asideClass: string;    
     containerClass: string;    
