@@ -17,8 +17,6 @@ const validateSchema = z
     }
   );
 
-
-
 export const NomeField = ({ patient, setPatient }: PatientPartialProps) => {
   const [nome, setNome] = useState<string>(patient.nome || "");
   const [error, setError] = useState("");
