@@ -1,5 +1,6 @@
 import { ChatContact } from "../molecules/ChatContact";
 import { FacebookTheme } from "../quarts/FacebookTheme";
+import { useState } from "react";
 const contacts = [
   {
     id: 0,
@@ -63,6 +64,10 @@ const contacts = [
   }
 ]
 export const ChatContacts = () => {
+  const [selectedContact, setSelectedContact] = useState<number>(0);
+  const selectContact = (id: number) => {
+    setSelectedContact(id);
+  }
   return <div className="h-screen border-r border-gray-200">
     {contacts.map((contact, i) => {
       const contactWithStyles = {
@@ -72,10 +77,14 @@ export const ChatContacts = () => {
         nameClass: FacebookTheme.contacts.nameClass,
         avatarSize: FacebookTheme.contacts.avatarSize,
         lastmessageClass: FacebookTheme.contacts.lastmessageClass,
-        isActive: (i === 0) ? true : false,
+        isActive: (i === selectedContact),
         isActiveClass: FacebookTheme.contacts.active
       }
-      return <ChatContact key={contact.id} contact={contactWithStyles} />
+      return <ChatContact 
+        key={contact.id} 
+        contact={contactWithStyles} 
+        onClick={() => selectContact(contact.id)} 
+      />
     })}
   </div>;
 };

@@ -15,11 +15,12 @@ interface ChatContactProps {
     datetimeClass?: string;
     lastmessageClass?: string;
     isActive: boolean;
-    isActiveClass?: string
+    isActiveClass?: string;
   }
+  onClick?: () => void
 }
 
-export const ChatContact = ({ contact }: ChatContactProps) => {
+export const ChatContact = ({ contact, onClick }: ChatContactProps) => {
 
   const {
     id,
@@ -39,7 +40,11 @@ export const ChatContact = ({ contact }: ChatContactProps) => {
   const lastmessage = messages ? messages[messages.length - 1].text : "";
   const datetime = messages ? messages[messages.length - 1].datetime : "";
   return (
-    <div className={`${containerClass} ${isActive ? isActiveClass : ""}`} id={`contact-${id}` }>
+    <div 
+      className={`${containerClass} ${isActive ? isActiveClass : ""}`} 
+      id={`contact-${id}`}
+      onClick={onClick}
+    >
       <div className="w-full flex items-center border-b-2 border-gray-200">
         <div className="w-full relative flex items-center">
           <ChatContactAvatar avatar={avatar} avatarClass={avatarClass} alt={name} />
