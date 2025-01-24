@@ -1,5 +1,12 @@
 # Feature Chat
 
+## Padrões
+
+### Exportação
+
+- `export default`: para `hooks` e `pages`
+- `export`: para o resto  
+
 ## Tipagens
 
 Para tipar o evento corretamente em TypeScript, você deve usar o tipo adequado para o evento que está sendo disparado. No caso de um input de tipo texto o tipo do evento será 
