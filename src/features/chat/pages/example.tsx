@@ -1,10 +1,10 @@
-import { Chat } from '../organisms/Chat'
+import { ChatTemplate } from '../templates/ChatTemplate';
 
 
 const ChatExample = () => {
 
   return (
-    <Chat></Chat>
+    <ChatTemplate />
   )
 
 }

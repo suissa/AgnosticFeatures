@@ -1,7 +1,5 @@
-interface ChatMessageProps {
-  text: string;
-  owner: string;
-  datetime: string;
+import { IMessage } from "./ChatInputMessage";
+interface ChatMessageProps extends IMessage {
   textClass?: string;
   ownerClass?: string;
   datetimeClass?: string;

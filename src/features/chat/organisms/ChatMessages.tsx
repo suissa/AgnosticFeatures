@@ -2,14 +2,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { ChatInputMessage } from "../molecules/ChatInputMessage";
 import { ChatMessage } from "../molecules/ChatMessage";
 import { IMessage } from "../molecules/ChatInputMessage";
-
-const FacebookTheme = {
-  senderClass: `flex flex-row-reverse bg-blue-500 text-white  
-    justify-self-end mr-6 mb-6 px-6 py-2 rounded rounded-xl`,
-  receiverClass: `flex flex-row bg-gray-200 text-gray-800  
-    justify-self-start ml-6 mb-6 mr-6 mb-6 px-6 py-2 rounded rounded-xl`,
-  datetimeClass: "text-xs text-gray-500 text-center",
-};
+import { FacebookTheme } from "../quarts/FacebookTheme";
 
 const getDatetime = () => {
   const date = new Date();
@@ -19,7 +12,7 @@ const getDatetime = () => {
   return datetime;
 };
 
-export const Chat = (): ReactNode => {
+export const ChatMessages = (): ReactNode => {
   const [messages, setMessages] = useState<IMessage[]>([]);
 
   useEffect(() => {
@@ -63,7 +56,7 @@ export const Chat = (): ReactNode => {
   }, [messages]);
 
   return (
-    <div className="w-full bg-white fixed top-0">
+    <div className=" fixed top-0">
       <div 
         className="flex flex-col-reverse h-[calc(100vh-60px)] overflow-y-auto"
         ref={messagesContainerRef}
@@ -75,6 +68,7 @@ export const Chat = (): ReactNode => {
                 text={message.text} 
                 owner={message.owner} 
                 datetime={message.datetime}
+                type={message.type}
                 messageClass={message.type === "sender" ? FacebookTheme.senderClass : FacebookTheme.receiverClass}
                 datetimeClass={FacebookTheme.datetimeClass}
               />
