@@ -13,6 +13,11 @@ interface IContact {
   messages: IMessage[];
 }
 
+
+export interface IContactMessages {
+  [contactId: number]: IMessage[];
+}
+
 interface ChatContextProps {
   contacts: IContact[];
   selectedContact: number;
