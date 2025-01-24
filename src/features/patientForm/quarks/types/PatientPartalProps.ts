@@ -1,4 +1,4 @@
-import { PatientProps } from "../../organisms/PatientForm";
+import { PatientProps } from "./PatientProps";
 
 export interface PatientPartialProps  {
   patient: Partial<PatientProps>;

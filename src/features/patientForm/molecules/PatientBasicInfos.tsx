@@ -51,6 +51,7 @@ export const PatientBasicInfos = ({ patient, setPatient }: PatientPartialProps) 
         <LabelPatient htmlFor="nascimento" labelText="Data de Nascimento" />
         <Input
           value={patient.nascimento || ""}
+          required={true}
           id="nascimento"
           type="date"
           className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"

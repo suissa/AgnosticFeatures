@@ -1,18 +1,16 @@
 import { useState } from "react";
-import { z } from "zod";
 import { PatientPartialProps } from "../quarks/types/PatientPartalProps";
 import { LabelPatient } from "../atoms/LabelPatient";
 import { fieldHandleBlur } from "../quarks/validations/fieldHandleBlur";
-
-const validateSchema = z.string().email("Digite um email válido");
+import validateSchema from "../../../shared/hooks/validations/EmailValidation";
 
 export const EmailField = ({ patient, setPatient }: PatientPartialProps) => {
   const [email, setEmail] = useState<string>(patient.email || "");
   const [error, setError] = useState("");
   const fieldName = "email";
 
-  const handleBlur = fieldHandleBlur(patient, setPatient, setError)(email, fieldName, validateSchema);
-
+  const patientHandleBlur = fieldHandleBlur(patient, setPatient, setError);
+  const handleBlur = patientHandleBlur(email, fieldName, validateSchema);
   return (
     <>
       <LabelPatient htmlFor="email" labelText="Email" />

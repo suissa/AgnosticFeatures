@@ -6,6 +6,7 @@ interface InputProps {
   type: string;
   value: string;
   placeholder?: string;
+  required?: boolean;
   onClick?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -22,6 +23,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type,
       placeholder,
       value,
+      required,
       onClick,
       onChange,
       onFocus,
@@ -37,6 +39,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type={type}
       value={value}
       placeholder={placeholder}
+      required={required}
       onClick={onClick}
       onChange={onChange}
       onFocus={onFocus}

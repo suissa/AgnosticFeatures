@@ -2,28 +2,16 @@ import { useState } from "react";
 import { Input } from "../../../shared/atoms/Input";
 import { LabelPatient } from "../atoms/LabelPatient";
 import { PatientPartialProps } from "../quarks/types/PatientPartalProps";
-import { z } from "zod";
 import { fieldHandleBlur } from "../quarks/validations/fieldHandleBlur";
-const validateSchema = z
-  .string()
-  .refine(
-    (name) =>
-      name
-        .trim()
-        .split(/\s+/)
-        .filter((word) => word.length >= 2).length >= 2,
-    {
-      message: "O nome deve ter pelo menos 2 palavras com 2 caracteres ou mais.",
-    }
-  );
+import validateSchema from "../../../shared/hooks/validations/NomeValidation";
 
 export const NomeField = ({ patient, setPatient }: PatientPartialProps) => {
   const [nome, setNome] = useState<string>(patient.nome || "");
   const [error, setError] = useState("");
   const fieldName = "nome";
 
-  const handleBlur = fieldHandleBlur(patient, setPatient, setError)(nome, fieldName, validateSchema);
-
+  const patientHandleBlur = fieldHandleBlur(patient, setPatient, setError);
+  const handleBlur = patientHandleBlur(nome, fieldName, validateSchema);
   return (
     <>
       <LabelPatient htmlFor="nome" labelText="Nome Completo" />

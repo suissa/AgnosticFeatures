@@ -2,33 +2,7 @@ import { PatientClinicalInfos } from "../molecules/PatientClininalInfos";
 import { PatientBasicInfos } from "../molecules/PatientBasicInfos";
 import { PatientAditionalInfos } from "../molecules/PatientAditionalInfos";
 import { useEffect, useState } from "react";
-
-export interface PatientProps {
-  nome: string;
-  dataNascimento: string;
-  sexo: string;
-  estadoCivil: string;
-  endereco: {
-    cep?: string;
-    rua?: string;
-    cidade?: string;
-    estado?: string;
-    bairro?: string;
-    numero?: string;
-    complemento?: string;
-  }
-  telefone: string;
-  nascimento: string;
-  email: string;
-  cpf: string;
-  profissao: string;
-  escolaridade: string;
-  religiao: string;
-  queixa: string;
-  historico: string;
-}
-
-
+import { PatientProps } from "../quarks/types/PatientProps";
 
 export const PatientForm = () => {
   const [patient, setPatient] = useState<Partial<PatientProps>>({
