@@ -1,12 +1,14 @@
 import useChatContext from "../hooks/useChatContext";
 import { ChatContact } from "../molecules/ChatContact";
 import { FacebookTheme } from "../quarks/themes/FacebookTheme";
+
+const containerClass = FacebookTheme.contacts.asideClass;
 export const ChatContacts = () => {
   // const [selectedContact, setSelectedContact] = useState<number>(0);
 
   const { contacts, selectedContact, setSelectedContact } = useChatContext();
 
-  return <div className="h-screen border-r border-gray-200">
+  return <div className={containerClass}>
     {contacts.map((contact) => {
       const contactWithStyles = {
         ...contact,

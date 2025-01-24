@@ -2,10 +2,12 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { Input } from "../../../shared/atoms/Input";
 import { IMessage } from "../quarks/interfaces/IMessage";
 import useWebSocket from "../hooks/useWebsocket";
-
+import { FacebookTheme } from "../quarks/themes/FacebookTheme";
 interface ChatInputMessageProps {
   setMessages: Dispatch<SetStateAction<IMessage[]>>;
 }
+
+const chatInputClasses = FacebookTheme.chatInputClasses;
 
 const getDatetime = () => {
   const date = new Date();
@@ -14,8 +16,6 @@ const getDatetime = () => {
   }/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`;
   return datetime;
 };
-
-const chatInputClasses = "mt-1 block w-full px-4 py-2 border border-gray-500 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500";
 
 export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
   const [message, setMessage] = useState<IMessage>({

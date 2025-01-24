@@ -78,7 +78,7 @@ export const ChatMessages = (): ReactNode => {
           ))}
         </div>
       </div>
-      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[calc(100%-40px)]">
+      <div className="relative w-full h-[60px] border-0">
         <ChatInputMessage setMessages={setMessages} />
       </div>
     </div>
