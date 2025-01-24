@@ -7,6 +7,7 @@ import ModalExample from '../shared/components/Modal/pages/example';
 import PatientListExample from '../features/patientList/pages/example';
 import FAQExample from '../features/faq/pages/example';
 import ChatExample from '../features/chat/pages/example';
+import PatientFormExample from '../features/patientForm/pages/example';
 const App = () => {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/patients/example" element={<PatientListExample />} />
         <Route path="/faq/example" element={<FAQExample />} />
         <Route path="/chat/example" element={<ChatExample />} />
+        <Route path="/patient/form/example" element={<PatientFormExample />} />
       </Routes>
     </BrowserRouter>
   );

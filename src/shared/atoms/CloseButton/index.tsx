@@ -4,7 +4,7 @@ interface CloseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-import { CloseIcon } from "../../quarks/CloseIcon";
+import { CloseIcon } from "../../quarks/Icons/CloseIcon";
 
 export const CloseButton = ({ onClick, className = "" }: CloseButtonProps) => (
   <button

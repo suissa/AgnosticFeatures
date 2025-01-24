@@ -3,8 +3,9 @@ import { ReactNode } from "react";
 interface TextareAProps {
   className?: string;
   id?: string;
-  children: ReactNode;
+  children?: ReactNode;
   size?: number;
+  rows?: number;
   placeholder?: string;
   value?: string;
   onClick?: () => void;
@@ -14,13 +15,14 @@ interface TextareAProps {
   onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
 }
 
-export const TextArea = ({ className, id, children, size, placeholder, value,
+export const TextArea = ({ className, id, children, size, rows, placeholder, value,
   onClick, onChange, onFocus, onBlur, onKeyDown }: TextareAProps) => (
   <textarea 
     className={className}
     value={value}
     id={id} 
     cols={size}
+    rows={rows}
     placeholder={placeholder}
     onClick={onClick}
     onChange={onChange}
