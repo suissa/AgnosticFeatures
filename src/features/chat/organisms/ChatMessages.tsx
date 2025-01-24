@@ -56,7 +56,7 @@ export const ChatMessages = (): ReactNode => {
   }, [messages]);
 
   return (
-    <div className=" fixed top-0">
+    <div className=" fixed top-0 bg-white">
       <div 
         className="flex flex-col-reverse h-[calc(100vh-60px)] overflow-y-auto"
         ref={messagesContainerRef}

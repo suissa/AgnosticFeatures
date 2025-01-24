@@ -4,4 +4,12 @@ export const FacebookTheme = {
   receiverClass: `flex flex-row bg-gray-200 text-gray-800  
     justify-self-start ml-6 mb-6 mr-6 mb-6 px-6 py-2 rounded rounded-xl`,
   datetimeClass: "text-xs text-gray-500 text-center",
+  contacts: {
+    containerClass: "flex content-center h-[80px] overflow-none cursor-pointer",
+    datetimeClass: "absolute top-2 right-2 text-xs text-gray-500 text-center",
+    avatarSize: 16,
+    nameClass: "text-md font-semibold",
+    lastmessageClass: "text-sm text-gray-400",
+    active: "bg-gray-200"
+  }
 };

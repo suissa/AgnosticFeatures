@@ -3,10 +3,10 @@ import { ChatContacts } from "../organisms/ChatContacts";
 export const ChatTemplate = () => {
   return (
   <div className="flex h-screen w-full">
-    <aside className="w-1/4 bg-gray-200">
+    <aside className="w-1/4 h-screen">
       <ChatContacts />
     </aside>
-    <main className="w-3/4 bg-white">
+    <main className="w-3/4 h-screen">
       <ChatMessages />
     </main>
   </div>
