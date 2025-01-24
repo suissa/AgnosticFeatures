@@ -11,7 +11,7 @@ export const FacebookTheme: Required<ITheme> = {
     justify-self-start ml-6 mb-6 mr-6 mb-6 px-6 py-2 rounded rounded-xl`,
   datetimeClass: "text-xs text-gray-500 text-center",
 
-  chatInputClasses: `mt-1 block w-full px-4 py-2 pt-4 border-0 border-t border-t-${BORDER_COLOR}
+  chatInputClasses: `mt-1 block w-full px-4 py-2 pt-4 border-0 border-t border-${BORDER_COLOR}
   hover:border-t-${BORDER_COLOR} focus:outline-none focus:ring-0`,
   
   emojiStyle: EmojiStyle.FACEBOOK,
