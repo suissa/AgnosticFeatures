@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { AccordionProps } from "../types/AccordionProps";
 import { AccordionTrigger } from "../molecules/AccordionTrigger";
+import { ReactNode } from "react";
 
+export interface AccordionProps {
+  triggerValue: string;
+  children: ReactNode;
+  onToggle: () => void
+}
 
 export const Accordion: React.FC<AccordionProps> = ({ triggerValue, children }) => {
   const [isOpen, setIsOpen] = useState(false);

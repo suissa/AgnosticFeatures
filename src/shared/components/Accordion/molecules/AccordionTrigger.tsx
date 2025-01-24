@@ -1,5 +1,9 @@
 import React from "react";
-import { AccordionTriggerProps } from "../types/AccordionTriggerProps";
+export interface AccordionTriggerProps {
+  triggerValue: string;
+  onToggle: () => void;
+  isOpen: boolean;
+}
 
 export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({ triggerValue, onToggle, isOpen }) => (
   <div

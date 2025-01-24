@@ -1,4 +1,5 @@
-interface CloseButtonProps {
+import { ButtonHTMLAttributes } from 'react';
+interface CloseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   className?: string;
 }

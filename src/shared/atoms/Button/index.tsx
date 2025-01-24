@@ -1,4 +1,3 @@
-// src/shared/components/atoms/Button/index.tsx
 import { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
