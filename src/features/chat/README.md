@@ -338,3 +338,14 @@ useEffect(() => {
 - Scroll automático implementado corretamente
 - Cálculos precisos de altura/largura
 - Posicionamento fixo adequado
+
+
+## Contatos
+
+
+## Estado Global - Context
+Optei por utilizar a Context API porque o estado precisa ser acessado por múltiplos componentes, como `ChatMessages` e `ChatContacts`. Além disso, quero manter o gerenciamento de estado separado da lógica de apresentação, garantindo maior coesão e facilitando a reutilização dos componentes.
+
+Embora fosse possível gerenciar o estado diretamente no template, acredito que isso iria contra os princípios do Atomic Design. Como `ChatContacts` e `ChatMessages` já são organismos, o próximo nível deveria ser o template ou page. Criar um organismo que incorpora outros organismos adicionando lógica de estado poderia comprometer a estrutura hierárquica do design atômico. Por isso, a escolha pela Context API se alinha melhor com a arquitetura e os conceitos do projeto.
+
+Além desse detalhe arquitetural eu também pensei de antemão na atualização de novas mensagens vindas pelo *Websocket* ou *long pooling*. Se eu configurasse o *WebSocket* diretamente no componente `ChatMessages`, ele ficaria acoplado à lógica de recebimento de mensagens. Com a Context API a lógica do *WebSocket* pode ser encapsulada dentro do provedor de contexto, outros componentes (ou futuras funcionalidades) que precisarem acessar mensagens também podem fazê-lo sem duplicar lógica.

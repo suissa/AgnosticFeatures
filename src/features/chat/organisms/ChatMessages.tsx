@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
+import { useChatContext } from "../context/ChatContext";
 import { ChatInputMessage } from "../molecules/ChatInputMessage";
 import { ChatMessage } from "../molecules/ChatMessage";
 import { IMessage } from "../molecules/ChatInputMessage";
@@ -13,7 +14,8 @@ const getDatetime = () => {
 };
 
 export const ChatMessages = (): ReactNode => {
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  // const [messages, setMessages] = useState<IMessage[]>([]);
+  const { messages, setMessages } = useChatContext();
 
   useEffect(() => {
     setMessages([{

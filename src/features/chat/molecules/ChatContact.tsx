@@ -36,7 +36,7 @@ export const ChatContact = ({ contact, onClick }: ChatContactProps) => {
     isActiveClass
   } = contact;
 
-  const avatarClass = `size-${avatarSize} rounded-full`;
+  const avatarClass = `w-${avatarSize} h-${avatarSize} rounded-full`;
   const lastmessage = messages ? messages[messages.length - 1].text : "";
   const datetime = messages ? messages[messages.length - 1].datetime : "";
   return (

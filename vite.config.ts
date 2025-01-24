@@ -9,4 +9,7 @@ export default defineConfig({
     open: true,
     host: true,
   },
+  css: {
+    postcss: './postcss.config.js',
+  },
 });

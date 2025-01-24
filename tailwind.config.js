@@ -3,6 +3,12 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      width: {
+        'size-16': '4rem',
+      },
+      height: {
+        'size-16': '4rem',
+      },
       keyframes: {
         'enter-from-right': {
           from: { transform: 'translateX(100%)' },
