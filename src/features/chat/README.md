@@ -347,10 +347,100 @@ useEffect(() => {
 - Posicionamento fixo adequado
 
 
+### Comunicação/Websocket
+
+Adotei uma comunicação em tempo real utilizando Websocket
+
+```ts
+import { useEffect, useRef } from "react";
+import { IMessage } from "../quarks/interfaces/IMessage";
+
+const useWebSocket = (
+  selectedContact: number,
+  setMessages: React.Dispatch<React.SetStateAction<IMessage[]>>
+) => {
+  const socketRef = useRef<WebSocket | null>(null);
+
+  useEffect(() => {
+    const socket = new WebSocket("ws://localhost:9515");
+    socketRef.current = socket;
+
+    socket.onmessage = (event) => {
+      const newMessage: IMessage = JSON.parse(event.data);
+      setMessages((prev) => [...prev, newMessage]);
+    };
+
+    socket.onclose = () => {
+      console.log("WebSocket disconnected");
+    };
+
+    return () => {
+      socket.close();
+    };
+  }, [setMessages]);
+
+  const sendMessage = (message: IMessage) => {
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify({ ...message, contactId: selectedContact }));
+    } else {
+      console.error("WebSocket is not connected.");
+    }
+  };
+
+  return { sendMessage };
+};
+
+export default useWebSocket;
+```
+
+O servidor para você testar isso é esse:
+
+```js
+const WebSocket = require("ws");
+
+const PORT = 9515;
+const server = new WebSocket.Server({ port: PORT });
+
+console.log(`WebSocket server is running on ws://localhost:${PORT}`);
+
+const formatDatetime = () => {
+  const date = new Date();
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`;
+};
+
+server.on("connection", (socket) => {
+  console.log("Client connected");
+
+  socket.on("message", (data) => {
+    console.log("Received message:", data.toString());
+    const userMessage = JSON.parse(data.toString());
+
+    const { contactId, text } = userMessage;
+
+    const autoReply = {
+      owner: "Bot",
+      text: `Resposta automática para: "${text}"`,
+      datetime: formatDatetime(),
+      type: "receiver",
+      contactId,
+    };
+
+    console.log("Enviando resposta automática:", autoReply);
+    setTimeout(() => socket.send(JSON.stringify(autoReply)), 1000);
+  });
+
+  socket.on("close", () => {
+    console.log("Client disconnected");
+  });
+});
+```
+
+
 ## Contatos
 
 
 ## Estado Global - Context
+
 Optei por utilizar a Context API porque o estado precisa ser acessado por múltiplos componentes, como `ChatMessages` e `ChatContacts`. Além disso, quero manter o gerenciamento de estado separado da lógica de apresentação, garantindo maior coesão e facilitando a reutilização dos componentes.
 
 Embora fosse possível gerenciar o estado diretamente no template, acredito que isso iria contra os princípios do Atomic Design. Como `ChatContacts` e `ChatMessages` já são organismos, o próximo nível deveria ser o template ou page. Criar um organismo que incorpora outros organismos adicionando lógica de estado poderia comprometer a estrutura hierárquica do design atômico. Por isso, a escolha pela Context API se alinha melhor com a arquitetura e os conceitos do projeto.
