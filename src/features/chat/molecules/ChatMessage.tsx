@@ -1,4 +1,4 @@
-import { IMessage } from "./ChatInputMessage";
+import { IMessage } from "../quarks/interfaces/IMessage";
 interface ChatMessageProps extends IMessage {
   textClass?: string;
   ownerClass?: string;

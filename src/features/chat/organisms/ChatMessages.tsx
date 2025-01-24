@@ -1,9 +1,9 @@
 import { ReactNode, useEffect, useRef } from "react";
-import { useChatContext } from "../context/ChatContext";
+import useChatContext from "../hooks/useChatContext";
 import { ChatInputMessage } from "../molecules/ChatInputMessage";
 import { ChatMessage } from "../molecules/ChatMessage";
-import { IMessage } from "../molecules/ChatInputMessage";
-import { FacebookTheme } from "../quarts/FacebookTheme";
+import { IMessage } from "../quarks/interfaces/IMessage";
+import { FacebookTheme } from "../quarks/themes/FacebookTheme";
 
 const getDatetime = () => {
   const date = new Date();
@@ -35,7 +35,7 @@ export const ChatMessages = (): ReactNode => {
         type: "receiver"
       };
       
-      setMessages(prev => [...prev, autoReply]);
+      setMessages((prev) => [...prev, autoReply]);
     }, 1000);
   };
 

@@ -1,4 +1,4 @@
-import { IMessage } from "./ChatInputMessage";
+import { IMessage } from "../quarks/interfaces/IMessage";
 import { ChatContactAvatar } from "../atoms/ChatContactAvatar";
 import { ChatContactName } from "../atoms/ChatContactName";
 import { ChatContactDatetime } from "../atoms/ChatContactDatetime";

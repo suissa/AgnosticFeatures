@@ -1,13 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Input } from "../../../shared/atoms/Input";
+import { IMessage } from "../quarks/interfaces/IMessage";
 
-export interface IMessage {
-  owner: string;
-  text: string;
-  datetime: string;
-  type: string; // sender | receiver
-  className?: string;
-}
 
 interface ChatInputMessageProps {
   setMessages: Dispatch<SetStateAction<IMessage[]>>;
