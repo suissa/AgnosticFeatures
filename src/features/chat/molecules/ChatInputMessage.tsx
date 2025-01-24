@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Input } from "../../../shared/atoms/Input";
 import { IMessage } from "../quarks/interfaces/IMessage";
-
+import useWebSocket from "../hooks/useWebsocket";
 
 interface ChatInputMessageProps {
   setMessages: Dispatch<SetStateAction<IMessage[]>>;
@@ -25,15 +25,24 @@ export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
     type: "sender",
   });
 
+  const { sendMessage } = useWebSocket(0, setMessages);
+
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.stopPropagation();
 
     if (e.key === "Enter" && message.text.trim()) {
-      setMessages(prev => [...prev, { ...message, datetime: getDatetime() }]);
+      const newMessage: IMessage = { ...message, datetime: getDatetime() };
+      setMessages(prev => [...prev, newMessage]);
       setMessage(prev => ({
         ...prev,
         text: "",
       }));
+
+
+      // Enviar mensagem via WebSocket
+      sendMessage(newMessage);
+
     }
   };
 

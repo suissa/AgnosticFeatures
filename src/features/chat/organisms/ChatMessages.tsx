@@ -17,36 +17,36 @@ export const ChatMessages = (): ReactNode => {
   // const [messages, setMessages] = useState<IMessage[]>([]);
   const { messages, setMessages } = useChatContext();
 
-  useEffect(() => {
-    setMessages([{
-      owner: "Suissa",
-      text: "Ola",
-      datetime: "10/10/2023, 09:00",
-      type: "receiver"
-    }]);
-  }, []);
+  // useEffect(() => {
+  //   setMessages([{
+  //     owner: "Suissa",
+  //     text: "Ola",
+  //     datetime: "10/10/2023, 09:00",
+  //     type: "receiver"
+  //   }]);
+  // }, []);
 
-  const addAutoReply = (userMessage: IMessage) => {
-    setTimeout(() => {
-      const autoReply: IMessage = {
-        owner: "Bot",
-        text: `Resposta automática para: ${userMessage.text}`,
-        datetime: getDatetime(),
-        type: "receiver"
-      };
+  // const addAutoReply = (userMessage: IMessage) => {
+  //   setTimeout(() => {
+  //     const autoReply: IMessage = {
+  //       owner: "Bot",
+  //       text: `Resposta automática para: ${userMessage.text}`,
+  //       datetime: getDatetime(),
+  //       type: "receiver"
+  //     };
       
-      setMessages((prev) => [...prev, autoReply]);
-    }, 1000);
-  };
+  //     setMessages((prev) => [...prev, autoReply]);
+  //   }, 1000);
+  // };
 
-  useEffect(() => {
-    if (messages.length > 0) {
-      const lastMessage = messages[messages.length - 1];
-      if (lastMessage.type === "sender") {
-        addAutoReply(lastMessage);
-      }
-    }
-  }, [messages]);
+  // useEffect(() => {
+  //   if (messages.length > 0) {
+  //     const lastMessage = messages[messages.length - 1];
+  //     if (lastMessage.type === "sender") {
+  //       addAutoReply(lastMessage);
+  //     }
+  //   }
+  // }, [messages]);
 
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
@@ -64,7 +64,7 @@ export const ChatMessages = (): ReactNode => {
         ref={messagesContainerRef}
       >
         <div className="flex flex-col">
-          {messages && messages.map((message, index) => (
+          {Array.isArray(messages) && messages.map((message, index) => (
             <div key={index}>
               <ChatMessage 
                 text={message.text} 

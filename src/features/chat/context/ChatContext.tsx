@@ -13,7 +13,6 @@ interface IContact {
   messages: IMessage[];
 }
 
-
 export interface IContactMessages {
   [contactId: number]: IMessage[];
 }
@@ -66,6 +65,22 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setMessages(currentContact ? currentContact.messages : []);
   }, [selectedContact]);
 
+  // Integrando o WebSocket
+  useEffect(() => {
+    const socket = new WebSocket("ws://localhost:9515");
+
+    socket.onmessage = (event) => {
+      const newMessage: IMessage = JSON.parse(event.data);
+
+      // Adiciona a nova mensagem ao contato atualmente selecionado
+      setMessages((prev) => [...prev, newMessage]);
+    };
+
+    return () => {
+      socket.close(); // Fecha o WebSocket ao desmontar o componente
+    };
+  }, [selectedContact]);
+
   return (
     <ChatContext.Provider
       value={{
@@ -80,4 +95,3 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
     </ChatContext.Provider>
   );
 };
-
