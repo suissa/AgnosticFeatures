@@ -3,7 +3,7 @@ import { Input } from "../../../shared/atoms/Input";
 import { IMessage } from "../quarks/interfaces/IMessage";
 import useWebSocket from "../hooks/useWebsocket";
 import { FacebookTheme } from "../quarks/themes/FacebookTheme";
-import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
+import EmojiPicker, { EmojiClickData, EmojiStyle } from 'emoji-picker-react';
 
 interface ChatInputMessageProps {
   setMessages: Dispatch<SetStateAction<IMessage[]>>;
@@ -80,7 +80,7 @@ export const ChatInputMessage = ({ setMessages }: ChatInputMessageProps) => {
       </div>
       {showPicker && (
         <div className="absolute bottom-12 right-0">
-          <EmojiPicker onEmojiClick={handleEmojiClick} />
+          <EmojiPicker onEmojiClick={handleEmojiClick} emojiStyle={EmojiStyle.FACEBOOK} />
         </div>
       )}
     </>
