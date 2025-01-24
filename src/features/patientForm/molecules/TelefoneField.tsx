@@ -5,14 +5,19 @@ import { useMask } from '@react-input/mask';
 import { LabelPatient } from "../atoms/LabelPatient";
 import { PatientPartialProps } from "../quarks/types/PatientPartalProps";
 
+import { fieldHandleBlur } from "../quarks/validations/fieldHandleBlur";
 // Validação do telefone com Zod
-const telefoneSchema = z
+const validateSchema = z
   .string()
   .regex(/^\(\d{2}\) \d{5}-\d{4}$/, "Telefone deve estar no formato (XX) XXXXX-XXXX");
 
 export const TelefoneField = ({ patient, setPatient }: PatientPartialProps) => {
   const [telefone, setTelefone] = useState<string>(patient.telefone || "");
   const [error, setError] = useState("");
+  const fieldName = "telefone";
+
+  const handleBlur = fieldHandleBlur(patient, setPatient, setError)(telefone, fieldName, validateSchema);
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.value);
@@ -20,18 +25,6 @@ export const TelefoneField = ({ patient, setPatient }: PatientPartialProps) => {
     setTelefone(value);
     setError(""); // Limpa o erro enquanto o usuário digita
   };
-
-  const handleBlur = () => {
-    try {
-      telefoneSchema.parse(telefone); // Valida o telefone
-      setPatient({ ...patient, telefone }); // Atualiza o estado global
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        setError(err.issues[0].message); // Mostra erro de validação
-      }
-    }
-  };
-
 
   const inputRef = useMask({
     mask: '(99) 99999-9999',
