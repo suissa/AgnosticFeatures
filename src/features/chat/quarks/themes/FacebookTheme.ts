@@ -4,7 +4,7 @@ const BORDER_COLOR = "gray-300";
 const ACTIVE_COLOR = "gray-200";
 
 
-export const FacebookTheme: Partial<ITheme> = {
+export const FacebookTheme: Required<ITheme> = {
   senderClass: `flex flex-row-reverse bg-blue-500 text-white  
     justify-self-end mr-6 mb-6 px-6 py-2 rounded rounded-xl`,
   receiverClass: `flex flex-row bg-gray-200 text-gray-800  
