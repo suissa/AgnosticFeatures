@@ -243,3 +243,7 @@ Então eu criei moléculas para os `input`s que necessitavam de validação e ad
 > **Síntese total**: As reações inorgânicas de síntese ou de adição são aquelas que ocorrem entre duas ou mais substâncias, originando um único produto mais complexo.
 
 ***Por exemplo, o gás hidrogênio reage com o gás nitrogênio, originando a amônia***
+
+> **Síntese parcial**: Ocorre quando um ou mais reagentes são substâncias compostas (formadas por mais de um elemento químico).
+
+***Por exemplo, a amônia é uma substância composta que, ao entrar em contato com o gás cloreto de hidrogênio (gás liberado pela solução de ácido clorídrico (Hcl), que também é uma substância composta), forma o cloreto de amônio, que é um vapor branco e altamente denso***

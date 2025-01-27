@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const NomeValidation = z
+const nomeSchema = z
   .string()
   .refine(
     (name) =>
@@ -13,4 +13,4 @@ const NomeValidation = z
     }
   );
 
-export default NomeValidation;
+export default nomeSchema;

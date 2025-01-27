@@ -6,13 +6,8 @@ import { PatientPartialProps } from "../quarks/types/PatientPartalProps";
 import { EmailField } from "./EmailField";
 import { NomeField } from "./NomeField";
 import { TelefoneField } from "./TelefoneField";
-const optionsSexo = [
-  { value: "", text: "Selecione" },
-  { value: "masculino", text: "Masculino" },
-  { value: "feminino", text: "Feminino" },
-  { value: "nao-binario", text: "Não Binário" },
-  { value: "outro", text: "Outro" },
-]
+import { DataDeNascimentoField } from "./DataDeNascimentoField";
+import { SexoField } from "./SexoField";
 
 const optionsEstadoCivil = [
   { value: "", text: "Selecione" },
@@ -48,25 +43,10 @@ export const PatientBasicInfos = ({ patient, setPatient }: PatientPartialProps) 
         <NomeField patient={patient} setPatient={setPatient} />
       </div>
       <div>
-        <LabelPatient htmlFor="nascimento" labelText="Data de Nascimento" />
-        <Input
-          value={patient.nascimento || ""}
-          required={true}
-          id="nascimento"
-          type="date"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          onChange={onChange}
-        />
+        <DataDeNascimentoField patient={patient} setPatient={setPatient} />
       </div>
       <div>
-        <LabelPatient htmlFor="sexo" labelText="Sexo/Gênero" />
-        <Select 
-          value={patient.sexo || ""}
-          id="sexo"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          options={optionsSexo}
-          onChange={onChangeSelect}
-        />
+        <SexoField patient={patient} setPatient={setPatient} />
       </div>
       <div>
         <LabelPatient htmlFor="estadoCivil" labelText="Estado Civil" />

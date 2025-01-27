@@ -1,7 +1,7 @@
 
 export interface PatientProps {
   nome: string;
-  dataNascimento: string;
+  dataDeNascimento: string;
   sexo: string;
   estadoCivil: string;
   endereco: {

@@ -1,5 +1,5 @@
-import { z, ZodEffects, ZodString } from "zod";
-import { PatientProps } from "../../organisms/PatientForm";
+import { z, ZodEffects, ZodOptional, ZodString } from "zod";
+import { PatientProps } from "../../quarks/types/PatientProps";
 
 export const fieldHandleBlur = (
   patient: Partial<PatientProps>,
@@ -8,7 +8,10 @@ export const fieldHandleBlur = (
   (
     field: string, 
     fieldName: string, 
-    validateSchema: ZodString | ZodEffects<ZodString, string, string>) => () => {
+    validateSchema: ZodString | 
+      ZodEffects<ZodString> | 
+      ZodOptional<ZodString> |
+      ZodEffects<ZodEffects<ZodString>>) => () => {
 
     try {
       validateSchema.parse(field); // Valida o nome com Zod

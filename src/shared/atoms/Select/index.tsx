@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { Option, OptionProps } from "../../quarks/Option";
 interface SelectProps {
   className?: string;
@@ -7,6 +6,7 @@ interface SelectProps {
   value?: string;
   onClick?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void;
 }
 
 export const Select = ({ className, options, value, id, onChange, onClick }: SelectProps) => (
@@ -16,6 +16,7 @@ export const Select = ({ className, options, value, id, onChange, onClick }: Sel
     className={className}
     onChange={onChange}
     onClick={onClick}
+    onBlur={onChange}
   >
     {options && Array.isArray(options) && options.map((option, index) => (
       <Option key={index} value={option.value} text={option.text} />

@@ -1,5 +1,5 @@
 import { z } from "zod";
 
-const EmailValidation = z.string().email("Digite um email válido");
+const emailSchema = z.string().email("Digite um email válido");
 
-export default EmailValidation;
+export default emailSchema;
