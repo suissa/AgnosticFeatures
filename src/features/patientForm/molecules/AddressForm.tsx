@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PatientProps } from "../organisms/PatientForm";
+import { PatientProps } from "../quarks/types/PatientProps";
 
 interface PatientAddressProps {
   patient: Partial<PatientProps>;
@@ -19,7 +19,7 @@ const AddressForm = ({ patient, setPatient }: PatientAddressProps) => {
         return;
       }
 
-      setPatient((prev) => ({
+      setPatient((prev: Partial<PatientProps>) => ({
         ...prev,
         endereco: {
           ...prev?.endereco, // Garante que `endereco` existe antes de espalhar
@@ -44,7 +44,7 @@ const AddressForm = ({ patient, setPatient }: PatientAddressProps) => {
   };
 
   const handleChange = (field: string, value: string) => {
-    setPatient((prev) => ({
+    setPatient((prev: Partial<PatientProps>) => ({
       ...prev,
       endereco: {
         ...prev.endereco,
